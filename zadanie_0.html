@@ -6,100 +6,102 @@
 <title>Zadanie 0</title>
 <style>
   body { font-family: Arial, sans-serif; font-size: 16px; line-height: 2.2; color: #222; padding: 20px; max-width: 860px; margin: 0 auto; background: #fff; }
-  h2 { font-size: 16px; font-weight: bold; color: #1F5C7A; margin: 0 0 12px; border-left: 4px solid #5B9AB5; padding-left: 10px; }
   select.gap { font-size: 15px; font-family: Arial, sans-serif; color: #222; background: #f5f5f5; border: 1.5px solid #aaa; border-radius: 6px; padding: 2px 6px; margin: 0 3px; cursor: pointer; vertical-align: middle; }
   select.gap.example { border-color: #1D9E75; background: #E1F5EE; color: #085041; cursor: default; font-weight: bold; }
   select.gap.correct { border-color: #1D9E75; background: #E1F5EE; color: #085041; }
   select.gap.wrong   { border-color: #D85A30; background: #FAECE7; color: #4A1B0C; }
   select.gap:disabled { opacity: 1; }
   .example-label { font-size: 11px; color: #085041; background: #E1F5EE; border: 1px solid #1D9E75; border-radius: 4px; padding: 1px 5px; vertical-align: middle; margin-right: 2px; font-weight: bold; }
-  .btn-check { margin-top: 14px; padding: 7px 22px; font-size: 14px; font-family: Arial, sans-serif; border: 1px solid #aaa; border-radius: 8px; background: #fff; cursor: pointer; display: block; }
+  .name-row { margin-bottom: 16px; }
+  .name-row input { font-size: 15px; font-family: Arial, sans-serif; border: 1.5px solid #aaa; border-radius: 6px; padding: 4px 10px; width: 260px; }
+  .name-row label { font-size: 14px; color: #555; margin-right: 8px; }
+  .btn-check { margin-top: 14px; padding: 7px 22px; font-size: 14px; font-family: Arial, sans-serif; border: 1px solid #aaa; border-radius: 8px; background: #fff; cursor: pointer; }
   .btn-check:hover { background: #f0f0f0; }
   .score { margin-top: 8px; font-size: 14px; font-weight: bold; }
   .hint  { font-size: 13px; color: #666; margin-top: 3px; }
+  .sending { font-size: 13px; color: #1D9E75; margin-top: 6px; }
 </style>
 </head>
 <body>
-
+<div class="name-row">
+  <label for="studentName">Imię i nazwisko:</label>
+  <input type="text" id="studentName" placeholder="wpisz swoje imię i nazwisko">
+</div>
 <p>
   W drugą rocznicę śmierci Marka Grechuty
   <span class="example-label">przykład</span><select class="gap example" disabled><option>odbędzie się</option></select>
   w Krakowie pierwsza edycja festiwalu jego twórczości pt.: „Korowód".
-  Anna Treter – krakowska piosenkarka i szefowa Fundacji „Piosenkarnia" opowiada:
-  Żona Marka dobrze
-  <select class="gap" data-correct="zna">
-    <option value="">— wybierz —</option>
-    <option>wie</option>
-    <option>umie</option>
-    <option>zna</option>
+  Anna Treter opowiada: Żona Marka dobrze
+  <select class="gap" data-correct="zna" data-label="1">
+    <option value="">— wybierz —</option><option>wie</option><option>umie</option><option>zna</option>
   </select>
-  koncerty piosenki literackiej przygotowywane przez Fundację i poprosiła mnie, żebym
-  <select class="gap" data-correct="zorganizowała">
-    <option value="">— wybierz —</option>
-    <option>zorganizowała</option>
-    <option>zbudowała</option>
-    <option>zagrała</option>
+  koncerty piosenki literackiej i poprosiła mnie, żebym
+  <select class="gap" data-correct="zorganizowała" data-label="2">
+    <option value="">— wybierz —</option><option>zorganizowała</option><option>zbudowała</option><option>zagrała</option>
   </select>
-  koncert w drugą rocznicę śmierci jej męża. Propozycja ta zgadzała się z celami Fundacji,
-  <select class="gap" data-correct="dlatego">
-    <option value="">— wybierz —</option>
-    <option>dlatego</option>
-    <option>ponieważ</option>
-    <option>dlaczego</option>
+  koncert. Propozycja zgadzała się z celami Fundacji,
+  <select class="gap" data-correct="dlatego" data-label="3">
+    <option value="">— wybierz —</option><option>dlatego</option><option>ponieważ</option><option>dlaczego</option>
   </select>
-  postanowiłam zrealizować ten pomysł. Najpierw odbył się konkurs na interpretację piosenek Marka Grechuty, a
-  <select class="gap" data-correct="potem">
-    <option value="">— wybierz —</option>
-    <option>późno</option>
-    <option>dalej</option>
-    <option>potem</option>
+  postanowiłam zrealizować ten pomysł. Najpierw odbył się konkurs, a
+  <select class="gap" data-correct="potem" data-label="4">
+    <option value="">— wybierz —</option><option>późno</option><option>dalej</option><option>potem</option>
   </select>
-  zdecydowaliśmy się dołączyć nowe elementy do przygotowywanego koncertu.
-  <select class="gap" data-correct="Na">
-    <option value="">— wybierz —</option>
-    <option>Dla</option>
-    <option>Po</option>
-    <option>Na</option>
+  zdecydowaliśmy się dołączyć nowe elementy.
+  <select class="gap" data-correct="Na" data-label="5">
+    <option value="">— wybierz —</option><option>Dla</option><option>Po</option><option>Na</option>
   </select>
-  festiwalu będzie można nie tylko słuchać muzyki. Przygotowujemy również
-  <select class="gap" data-correct="wystawę">
-    <option value="">— wybierz —</option>
-    <option>wystawę</option>
-    <option>przedstawienie</option>
-    <option>spektakl</option>
+  festiwalu będzie można słuchać muzyki. Przygotowujemy również
+  <select class="gap" data-correct="wystawę" data-label="6">
+    <option value="">— wybierz —</option><option>wystawę</option><option>przedstawienie</option><option>spektakl</option>
   </select>
-  obrazów Marka Grechuty. Natomiast fotograf – Adam Bujak pokaże publicznie po raz pierwszy swoje archiwalne
-  <select class="gap" data-correct="zdjęcia">
-    <option value="">— wybierz —</option>
-    <option>zdjęcia</option>
-    <option>płyty</option>
-    <option>rysunki</option>
-  </select>,
-  które robił Markowi Grechucie.
+  obrazów Marka Grechuty. Adam Bujak pokaże archiwalne
+  <select class="gap" data-correct="zdjęcia" data-label="7">
+    <option value="">— wybierz —</option><option>zdjęcia</option><option>płyty</option><option>rysunki</option>
+  </select>.
   Festiwal zakończy modlitwa w jednym z krakowskich
-  <select class="gap" data-correct="kościołów">
-    <option value="">— wybierz —</option>
-    <option>teatrów</option>
-    <option>kościołów</option>
-    <option>parków</option>
+  <select class="gap" data-correct="kościołów" data-label="8">
+    <option value="">— wybierz —</option><option>teatrów</option><option>kościołów</option><option>parków</option>
   </select>,
-  a potem wszyscy przejdą na cmentarz Rakowiecki, aby tam przy pomniku Marka Grechuty złożyć kwiaty.
+  a potem wszyscy przejdą na cmentarz Rakowiecki.
 </p>
-<button class="btn-check" onclick="check()">Sprawdź</button>
+<button class="btn-check" onclick="check()">Sprawdź i wyślij wyniki</button>
 <div class="score" id="score"></div>
-<div class="hint"  id="hint"></div>
+<div class="hint" id="hint"></div>
+<div class="sending" id="sending"></div>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+emailjs.init("HGP0eTJelNNwz-UUc");
 function check() {
+  var name = document.getElementById('studentName').value.trim();
+  if (!name) { alert('Proszę wpisać imię i nazwisko.'); return; }
   var sel = document.querySelectorAll('select.gap:not(.example)');
-  var ok = 0, empty = 0;
+  var ok = 0, empty = 0, details = [];
   sel.forEach(function(s) {
-    if (!s.value) { empty++; return; }
+    var chosen = s.value || '(brak)';
+    if (!s.value) empty++;
     s.disabled = true;
     s.classList.remove('correct','wrong');
-    if (s.value === s.dataset.correct) { s.classList.add('correct'); ok++; } else { s.classList.add('wrong'); }
+    if (s.value === s.dataset.correct) {
+      s.classList.add('correct'); ok++;
+      details.push('Luka ' + s.dataset.label + ': ' + chosen + ' ✓');
+    } else {
+      s.classList.add('wrong');
+      details.push('Luka ' + s.dataset.label + ': ' + chosen + ' ✗ (poprawnie: ' + s.dataset.correct + ')');
+    }
   });
-  document.getElementById('score').textContent = 'Wynik: ' + ok + ' / ' + sel.length;
-  document.getElementById('hint').textContent = empty > 0 ? 'Nie wypełniono ' + empty + ' luk.' : ok === sel.length ? 'Brawo! Wszystkie odpowiedzi poprawne.' : 'Błędne luki zaznaczone na czerwono.';
+  var total = sel.length;
+  document.getElementById('score').textContent = 'Wynik: ' + ok + ' / ' + total;
+  document.getElementById('hint').textContent = empty > 0 ? 'Nie wypełniono ' + empty + ' luk.' : ok === total ? 'Brawo! Wszystkie odpowiedzi poprawne.' : 'Błędne luki zaznaczone na czerwono.';
+  document.getElementById('sending').textContent = 'Wysyłanie wyników...';
+  emailjs.send("service_iyu0ody", "template_ble3403", {
+    name: name, title: "Zadanie 0 — Marek Grechuta",
+    message: 'Wynik: ' + ok + '/' + total + '\n\n' + details.join('\n'), email: ""
+  }).then(function() {
+    document.getElementById('sending').textContent = 'Wyniki wysłane! ✓';
+  }, function(err) {
+    document.getElementById('sending').textContent = 'Błąd: ' + JSON.stringify(err);
+  });
 }
 </script>
 </body>

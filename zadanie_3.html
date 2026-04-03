@@ -6,78 +6,89 @@
 <title>Zadanie 3</title>
 <style>
   body { font-family: Arial, sans-serif; font-size: 16px; line-height: 2.2; color: #222; padding: 20px; max-width: 860px; margin: 0 auto; background: #fff; }
-  h2 { font-size: 16px; font-weight: bold; color: #1F5C7A; margin: 0 0 12px; border-left: 4px solid #5B9AB5; padding-left: 10px; }
   select.gap { font-size: 15px; font-family: Arial, sans-serif; color: #222; background: #f5f5f5; border: 1.5px solid #aaa; border-radius: 6px; padding: 2px 6px; margin: 0 3px; cursor: pointer; vertical-align: middle; }
   select.gap.example { border-color: #1D9E75; background: #E1F5EE; color: #085041; cursor: default; font-weight: bold; }
   select.gap.correct { border-color: #1D9E75; background: #E1F5EE; color: #085041; }
   select.gap.wrong   { border-color: #D85A30; background: #FAECE7; color: #4A1B0C; }
   select.gap:disabled { opacity: 1; }
   .example-label { font-size: 11px; color: #085041; background: #E1F5EE; border: 1px solid #1D9E75; border-radius: 4px; padding: 1px 5px; vertical-align: middle; margin-right: 2px; font-weight: bold; }
-  .btn-check { margin-top: 14px; padding: 7px 22px; font-size: 14px; font-family: Arial, sans-serif; border: 1px solid #aaa; border-radius: 8px; background: #fff; cursor: pointer; display: block; }
+  .name-row { margin-bottom: 16px; }
+  .name-row input { font-size: 15px; font-family: Arial, sans-serif; border: 1.5px solid #aaa; border-radius: 6px; padding: 4px 10px; width: 260px; }
+  .name-row label { font-size: 14px; color: #555; margin-right: 8px; }
+  .btn-check { margin-top: 14px; padding: 7px 22px; font-size: 14px; font-family: Arial, sans-serif; border: 1px solid #aaa; border-radius: 8px; background: #fff; cursor: pointer; }
   .btn-check:hover { background: #f0f0f0; }
   .score { margin-top: 8px; font-size: 14px; font-weight: bold; }
-  .hint  { font-size: 13px; color: #666; margin-top: 3px; }
+  .hint { font-size: 13px; color: #666; margin-top: 3px; }
+  .sending { font-size: 13px; color: #1D9E75; margin-top: 6px; }
 </style>
 </head>
 <body>
-
+<div class="name-row">
+  <label for="studentName">Imię i nazwisko:</label>
+  <input type="text" id="studentName" placeholder="wpisz swoje imię i nazwisko">
+</div>
 <p>
-  Każdy, kto przyjeżdża
-  <span class="example-label">przykład</span><select class="gap example" disabled><option>do</option></select>
+  Każdy, kto przyjeżdża <span class="example-label">przykład</span><select class="gap example" disabled><option>do</option></select>
   Londynu, doskonale wie, że wszędzie trzeba poruszać się lewą stroną.
   – To jednak nie jest
-  <select class="gap" data-correct="dla">
-    <option value="">— wybierz —</option>
-    <option>dla</option>
-    <option>do</option>
-    <option>u</option>
+  <select class="gap" data-correct="dla" data-label="1">
+    <option value="">— wybierz —</option><option>dla</option><option>do</option><option>u</option>
   </select>
-  mnie największym problemem – mówi Marek, student ekonomii. – Londyn jest tak ogromny, że zawsze muszę mieć
-  <select class="gap" data-correct="przy">
-    <option value="">— wybierz —</option>
-    <option>ze</option>
-    <option>przy</option>
-    <option>na</option>
+  mnie największym problemem – mówi Marek. – Londyn jest tak ogromny, że zawsze muszę mieć
+  <select class="gap" data-correct="przy" data-label="2">
+    <option value="">— wybierz —</option><option>ze</option><option>przy</option><option>na</option>
   </select>
-  sobie mapę. Komunikacyjną zaletą stolicy Wielkiej Brytanii jest rozbudowana sieć metra.
-  – Kiedy przyjechałam
-  <select class="gap" data-correct="po">
-    <option value="">— wybierz —</option>
-    <option>tu na</option>
-    <option>za</option>
-    <option>po</option>
+  sobie mapę. – Kiedy przyjechałam
+  <select class="gap" data-correct="po" data-label="3">
+    <option value="">— wybierz —</option><option>tu na</option><option>za</option><option>po</option>
   </select>
   raz pierwszy, to właśnie londyńskie metro najbardziej mi się spodobało – mówi Karolina, kelnerka
-  <select class="gap" data-correct="z">
-    <option value="">— wybierz —</option>
-    <option>od</option>
-    <option>z</option>
-    <option>znad</option>
+  <select class="gap" data-correct="z" data-label="4">
+    <option value="">— wybierz —</option><option>od</option><option>z</option><option>znad</option>
   </select>
-  Lublina. – Nawet jeśli nie zna się miasta, wystarczy mieć mapkę metra i można poruszać się
-  <select class="gap" data-correct="bez">
-    <option value="">— wybierz —</option>
-    <option>obok</option>
-    <option>przez</option>
-    <option>bez</option>
+  Lublina. – Nawet jeśli nie zna się miasta, można poruszać się
+  <select class="gap" data-correct="bez" data-label="5">
+    <option value="">— wybierz —</option><option>obok</option><option>przez</option><option>bez</option>
   </select>
   kłopotów – uważa Karolina.
 </p>
-<button class="btn-check" onclick="check()">Sprawdź</button>
+<button class="btn-check" onclick="check()">Sprawdź i wyślij wyniki</button>
 <div class="score" id="score"></div>
-<div class="hint"  id="hint"></div>
+<div class="hint" id="hint"></div>
+<div class="sending" id="sending"></div>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+emailjs.init("HGP0eTJelNNwz-UUc");
 function check() {
+  var name = document.getElementById('studentName').value.trim();
+  if (!name) { alert('Proszę wpisać imię i nazwisko.'); return; }
   var sel = document.querySelectorAll('select.gap:not(.example)');
-  var ok = 0, empty = 0;
+  var ok = 0, empty = 0, details = [];
   sel.forEach(function(s) {
-    if (!s.value) { empty++; return; }
+    var chosen = s.value || '(brak)';
+    if (!s.value) empty++;
     s.disabled = true;
     s.classList.remove('correct','wrong');
-    if (s.value === s.dataset.correct) { s.classList.add('correct'); ok++; } else { s.classList.add('wrong'); }
+    if (s.value === s.dataset.correct) {
+      s.classList.add('correct'); ok++;
+      details.push('Luka ' + s.dataset.label + ': ' + chosen + ' ✓');
+    } else {
+      s.classList.add('wrong');
+      details.push('Luka ' + s.dataset.label + ': ' + chosen + ' ✗ (poprawnie: ' + s.dataset.correct + ')');
+    }
   });
-  document.getElementById('score').textContent = 'Wynik: ' + ok + ' / ' + sel.length;
-  document.getElementById('hint').textContent = empty > 0 ? 'Nie wypełniono ' + empty + ' luk.' : ok === sel.length ? 'Brawo! Wszystkie odpowiedzi poprawne.' : 'Błędne luki zaznaczone na czerwono.';
+  var total = sel.length;
+  document.getElementById('score').textContent = 'Wynik: ' + ok + ' / ' + total;
+  document.getElementById('hint').textContent = empty > 0 ? 'Nie wypełniono ' + empty + ' luk.' : ok === total ? 'Brawo! Wszystkie odpowiedzi poprawne.' : 'Błędne luki zaznaczone na czerwono.';
+  document.getElementById('sending').textContent = 'Wysyłanie wyników...';
+  emailjs.send("service_iyu0ody", "template_ble3403", {
+    name: name, title: "Zadanie 3 — Londyn",
+    message: 'Wynik: ' + ok + '/' + total + '\n\n' + details.join('\n'), email: ""
+  }).then(function() {
+    document.getElementById('sending').textContent = 'Wyniki wysłane! ✓';
+  }, function(err) {
+    document.getElementById('sending').textContent = 'Błąd: ' + JSON.stringify(err);
+  });
 }
 </script>
 </body>
