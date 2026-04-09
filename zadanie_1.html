@@ -12,25 +12,27 @@
   select.gap.wrong   { border-color: #D85A30; background: #FAECE7; color: #4A1B0C; }
   select.gap:disabled { opacity: 1; }
   .example-label { font-size: 11px; color: #085041; background: #E1F5EE; border: 1px solid #1D9E75; border-radius: 4px; padding: 1px 5px; vertical-align: middle; margin-right: 2px; font-weight: bold; }
-  .name-row { margin-bottom: 16px; }
-  .name-row input { font-size: 15px; font-family: Arial, sans-serif; border: 1.5px solid #aaa; border-radius: 6px; padding: 4px 10px; width: 260px; }
-  .name-row label { font-size: 14px; color: #555; margin-right: 8px; }
-  .btn-check { margin-top: 14px; padding: 7px 22px; font-size: 14px; font-family: Arial, sans-serif; border: 1px solid #aaa; border-radius: 8px; background: #fff; cursor: pointer; }
+  .field { margin-bottom: 12px; }
+  .field label { font-size: 14px; color: #555; margin-right: 8px; display: inline-block; width: 160px; }
+  .field input { font-size: 15px; font-family: Arial, sans-serif; border: 1.5px solid #aaa; border-radius: 6px; padding: 4px 10px; width: 260px; }
+  .btn-check { margin-top: 14px; padding: 7px 22px; font-size: 14px; border: 1px solid #aaa; border-radius: 8px; background: #fff; cursor: pointer; }
   .btn-check:hover { background: #f0f0f0; }
   .score { margin-top: 8px; font-size: 14px; font-weight: bold; }
-  .hint { font-size: 13px; color: #666; margin-top: 3px; }
+  .hint  { font-size: 13px; color: #666; margin-top: 3px; }
   .sending { font-size: 13px; color: #1D9E75; margin-top: 6px; }
 </style>
 </head>
 <body>
-<div class="name-row">
-  <label for="studentName">Imię i nazwisko:</label>
-  <input type="text" id="studentName" placeholder="wpisz swoje imię i nazwisko">
+
+<div class="field">
+  <label for="sName">Imię i nazwisko:</label>
+  <input type="text" id="sName" placeholder="wpisz imię i nazwisko">
 </div>
-<div class="name-row">
-  <label for="studentEmail">E-mail (opcjonalnie):</label>
-  <input type="email" id="studentEmail" placeholder="wpisz swój e-mail">
+<div class="field">
+  <label for="sEmail">E-mail (opcjonalnie):</label>
+  <input type="email" id="sEmail" placeholder="wpisz e-mail">
 </div>
+
 <p>
   Zimą <span class="example-label">przykład</span><select class="gap example" disabled><option>częściej</option></select>
   niż latem czujemy się zmęczeni, a nasze ogólne samopoczucie jest zwykle
@@ -59,94 +61,53 @@
   </select>
   w całym roku!
 </p>
+
 <button class="btn-check" onclick="check()">Sprawdź i wyślij wyniki</button>
 <div class="score" id="score"></div>
-<div class="hint" id="hint"></div>
+<div class="hint"  id="hint"></div>
 <div class="sending" id="sending"></div>
+
 <script>
+var GAS = "https://script.google.com/macros/s/AKfycbxCL1FMmtCsnUTI0bEzbIt-1VTV8cEbnIg64qrvWz-yAWG5DqFUQD_pACFlhsRL0_7B7Q/exec";
+
 function check() {
-  var name = document.getElementById('studentName').value.trim();
-  var email = document.getElementById('studentEmail').value.trim();
+  var name  = document.getElementById('sName').value.trim();
+  var email = document.getElementById('sEmail').value.trim();
   if (!name) { alert('Proszę wpisać imię i nazwisko.'); return; }
+
   var sel = document.querySelectorAll('select.gap:not(.example)');
   var ok = 0, empty = 0, details = [];
   sel.forEach(function(s) {
     var chosen = s.value || '(brak)';
-    if (!s.value) empty++;
+    if (!s.value) { empty++; }
     s.disabled = true;
     s.classList.remove('correct','wrong');
     if (s.value === s.dataset.correct) {
       s.classList.add('correct'); ok++;
-      details.push('Luka ' + s.dataset.label + ': ' + chosen + ' ✓');
+      details.push('Luka ' + s.dataset.label + ': ' + chosen + ' OK');
     } else {
       s.classList.add('wrong');
-      details.push('Luka ' + s.dataset.label + ': ' + chosen + ' ✗ (poprawnie: ' + s.dataset.correct + ')');
+      details.push('Luka ' + s.dataset.label + ': ' + chosen + ' (poprawnie: ' + s.dataset.correct + ')');
     }
   });
+
   var total = sel.length;
   document.getElementById('score').textContent = 'Wynik: ' + ok + ' / ' + total;
-  document.getElementById('hint').textContent = empty > 0 ? 'Nie wypełniono ' + empty + ' luk.' : ok === total ? 'Brawo! Wszystkie odpowiedzi poprawne.' : 'Błędne luki zaznaczone na czerwono.';
-  document.getElementById('sending').textContent = 'Wysyłanie wyników...';
-  fetch("https://script.google.com/macros/s/AKfycbxCL1FMmtCsnUTI0bEzbIt-1VTV8cEbnIg64qrvWz-yAWG5DqFUQD_pACFlhsRL0_7B7Q/exec", {
-    method: "POST",
-    mode: "no-cors",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
-      name: name,
-      email: email,
-      title: document.title,
-      message: "Wynik: " + ok + "/" + total + "
+  document.getElementById('hint').textContent = empty > 0
+    ? 'Nie wypełniono ' + empty + ' luk.'
+    : ok === total ? 'Brawo! Wszystkie odpowiedzi poprawne.' : 'Błędne luki zaznaczone na czerwono.';
+  document.getElementById('sending').textContent = 'Wysyłanie...';
 
-" + details.join("
-")
-    })
-  }).then(function() {
-    document.getElementById('sending').textContent = 'Wyniki wysłane! ✓' + (email ? ' Sprawdź swoją skrzynkę.' : '');
-  }).catch(function(err) {
-    document.getElementById('sending').textContent = 'Błąd wysyłania.';
-  });
-}
-</script>
-<script>
-function check() {
-  var name = document.getElementById('studentName').value.trim();
-  var email = document.getElementById('studentEmail').value.trim();
-  if (!name) { alert('Proszę wpisać imię i nazwisko.'); return; }
-  var sel = document.querySelectorAll('select.gap:not(.example)');
-  var ok = 0, empty = 0, details = [];
-  sel.forEach(function(s) {
-    var chosen = s.value || '(brak)';
-    if (!s.value) empty++;
-    s.disabled = true;
-    s.classList.remove('correct','wrong');
-    if (s.value === s.dataset.correct) {
-      s.classList.add('correct'); ok++;
-      details.push('Luka ' + s.dataset.label + ': ' + chosen + ' ✓');
-    } else {
-      s.classList.add('wrong');
-      details.push('Luka ' + s.dataset.label + ': ' + chosen + ' ✗ (poprawnie: ' + s.dataset.correct + ')');
-    }
-  });
-  var total = sel.length;
-  document.getElementById('score').textContent = 'Wynik: ' + ok + ' / ' + total;
-  document.getElementById('hint').textContent = empty > 0 ? 'Nie wypełniono ' + empty + ' luk.' : ok === total ? 'Brawo! Wszystkie odpowiedzi poprawne.' : 'Błędne luki zaznaczone na czerwono.';
-  document.getElementById('sending').textContent = 'Wysyłanie wyników...';
-  fetch("https://script.google.com/macros/s/AKfycbxCL1FMmtCsnUTI0bEzbIt-1VTV8cEbnIg64qrvWz-yAWG5DqFUQD_pACFlhsRL0_7B7Q/exec", {
-    method: "POST",
-    mode: "no-cors",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
-      name: name,
-      email: email,
-      title: document.title,
-      message: "Wynik: " + ok + "/" + total + "
+  var msg = 'Wynik: ' + ok + '/' + total + '\n\n' + details.join('\n');
 
-" + details.join("
-")
-    })
+  fetch(GAS, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name: name, email: email, title: 'Zadanie 1 - Zima i lato', message: msg })
   }).then(function() {
-    document.getElementById('sending').textContent = 'Wyniki wysłane! ✓' + (email ? ' Sprawdź swoją skrzynkę.' : '');
-  }).catch(function(err) {
+    document.getElementById('sending').textContent = 'Wysłano! ✓' + (email ? ' Sprawdź skrzynkę.' : '');
+  }).catch(function() {
     document.getElementById('sending').textContent = 'Błąd wysyłania.';
   });
 }
