@@ -27,7 +27,10 @@
   <label for="studentName">Imię i nazwisko:</label>
   <input type="text" id="studentName" placeholder="wpisz swoje imię i nazwisko">
 </div>
-
+<div class="name-row">
+  <label for="studentEmail">E-mail (opcjonalnie):</label>
+  <input type="email" id="studentEmail" placeholder="wpisz swój e-mail">
+</div>
 <p>
   Marta i Przemek bardzo lubią
   <span class="example-label">przykład</span><select class="gap example" disabled>
@@ -116,6 +119,7 @@
 <script>
 function check() {
   var name = document.getElementById('studentName').value.trim();
+  var email = document.getElementById('studentEmail').value.trim();
   if (!name) { alert('Proszę wpisać imię i nazwisko.'); return; }
   var sel = document.querySelectorAll('select.gap:not(.example)');
   var ok = 0, empty = 0, details = [];
@@ -136,34 +140,68 @@ function check() {
   document.getElementById('score').textContent = 'Wynik: ' + ok + ' / ' + total;
   document.getElementById('hint').textContent = empty > 0 ? 'Nie wypełniono ' + empty + ' luk.' : ok === total ? 'Brawo! Wszystkie odpowiedzi poprawne.' : 'Błędne luki zaznaczone na czerwono.';
   document.getElementById('sending').textContent = 'Wysyłanie wyników...';
-  sendEmail(name, title, message).then(function() {
-    document.getElementById('sending').textContent = 'Wyniki wysłane! ✓';
-  }, function(err) {
-    document.getElementById('sending').textContent = 'Błąd: ' + JSON.stringify(err);
+  fetch("https://script.google.com/macros/s/AKfycbxCL1FMmtCsnUTI0bEzbIt-1VTV8cEbnIg64qrvWz-yAWG5DqFUQD_pACFlhsRL0_7B7Q/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      title: document.title,
+      message: "Wynik: " + ok + "/" + total + "
+
+" + details.join("
+")
+    })
+  }).then(function() {
+    document.getElementById('sending').textContent = 'Wyniki wysłane! ✓' + (email ? ' Sprawdź swoją skrzynkę.' : '');
+  }).catch(function(err) {
+    document.getElementById('sending').textContent = 'Błąd wysyłania.';
   });
 }
 </script>
 
 <script>
-var EMAILJS_SERVICE = "service_iyu0ody";
-var EMAILJS_TEMPLATE = "template_ble3403";
-var EMAILJS_KEY = "HGP0eTJelNNwz-UUc";
-
-function sendEmail(name, title, message) {
-  return fetch("https://api.emailjs.com/api/v1.0/email/send", {
+function check() {
+  var name = document.getElementById('studentName').value.trim();
+  var email = document.getElementById('studentEmail').value.trim();
+  if (!name) { alert('Proszę wpisać imię i nazwisko.'); return; }
+  var sel = document.querySelectorAll('select.gap:not(.example)');
+  var ok = 0, empty = 0, details = [];
+  sel.forEach(function(s) {
+    var chosen = s.value || '(brak)';
+    if (!s.value) empty++;
+    s.disabled = true;
+    s.classList.remove('correct','wrong');
+    if (s.value === s.dataset.correct) {
+      s.classList.add('correct'); ok++;
+      details.push('Luka ' + s.dataset.label + ': ' + chosen + ' ✓');
+    } else {
+      s.classList.add('wrong');
+      details.push('Luka ' + s.dataset.label + ': ' + chosen + ' ✗ (poprawnie: ' + s.dataset.correct + ')');
+    }
+  });
+  var total = sel.length;
+  document.getElementById('score').textContent = 'Wynik: ' + ok + ' / ' + total;
+  document.getElementById('hint').textContent = empty > 0 ? 'Nie wypełniono ' + empty + ' luk.' : ok === total ? 'Brawo! Wszystkie odpowiedzi poprawne.' : 'Błędne luki zaznaczone na czerwono.';
+  document.getElementById('sending').textContent = 'Wysyłanie wyników...';
+  fetch("https://script.google.com/macros/s/AKfycbxCL1FMmtCsnUTI0bEzbIt-1VTV8cEbnIg64qrvWz-yAWG5DqFUQD_pACFlhsRL0_7B7Q/exec", {
     method: "POST",
+    mode: "no-cors",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify({
-      service_id: EMAILJS_SERVICE,
-      template_id: EMAILJS_TEMPLATE,
-      user_id: EMAILJS_KEY,
-      template_params: {
-        name: name,
-        title: title,
-        message: message,
-        email: ""
-      }
+      name: name,
+      email: email,
+      title: document.title,
+      message: "Wynik: " + ok + "/" + total + "
+
+" + details.join("
+")
     })
+  }).then(function() {
+    document.getElementById('sending').textContent = 'Wyniki wysłane! ✓' + (email ? ' Sprawdź swoją skrzynkę.' : '');
+  }).catch(function(err) {
+    document.getElementById('sending').textContent = 'Błąd wysyłania.';
   });
 }
 </script>
