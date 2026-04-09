@@ -113,9 +113,7 @@
 <div class="hint"  id="hint"></div>
 <div class="sending" id="sending"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-emailjs.init("HGP0eTJelNNwz-UUc");
 function check() {
   var name = document.getElementById('studentName').value.trim();
   if (!name) { alert('Proszę wpisać imię i nazwisko.'); return; }
@@ -138,10 +136,7 @@ function check() {
   document.getElementById('score').textContent = 'Wynik: ' + ok + ' / ' + total;
   document.getElementById('hint').textContent = empty > 0 ? 'Nie wypełniono ' + empty + ' luk.' : ok === total ? 'Brawo! Wszystkie odpowiedzi poprawne.' : 'Błędne luki zaznaczone na czerwono.';
   document.getElementById('sending').textContent = 'Wysyłanie wyników...';
-  emailjs.send("service_iyu0ody", "template_ble3403", {
-    name: name, title: "Cloze — Marta i Przemek",
-    message: 'Wynik: ' + ok + '/' + total + '\n\n' + details.join('\n'), email: ""
-  }).then(function() {
+  sendEmail(name, title, message).then(function() {
     document.getElementById('sending').textContent = 'Wyniki wysłane! ✓';
   }, function(err) {
     document.getElementById('sending').textContent = 'Błąd: ' + JSON.stringify(err);
@@ -149,5 +144,28 @@ function check() {
 }
 </script>
 
+<script>
+var EMAILJS_SERVICE = "service_iyu0ody";
+var EMAILJS_TEMPLATE = "template_ble3403";
+var EMAILJS_KEY = "HGP0eTJelNNwz-UUc";
+
+function sendEmail(name, title, message) {
+  return fetch("https://api.emailjs.com/api/v1.0/email/send", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      service_id: EMAILJS_SERVICE,
+      template_id: EMAILJS_TEMPLATE,
+      user_id: EMAILJS_KEY,
+      template_params: {
+        name: name,
+        title: title,
+        message: message,
+        email: ""
+      }
+    })
+  });
+}
+</script>
 </body>
 </html>
