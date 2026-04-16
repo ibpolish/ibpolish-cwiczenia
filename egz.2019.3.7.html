@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Egzamin B1 2019 — Zadanie 3.7</title>
+<style>
+  body { font-family: Arial, sans-serif; font-size: 16px; line-height: 2.4; color: #222; padding: 20px; max-width: 900px; margin: 0 auto; background: #fff; }
+  select.gap { font-size: 15px; font-family: Arial, sans-serif; color: #222; background: #f5f5f5; border: 1.5px solid #aaa; border-radius: 6px; padding: 2px 6px; margin: 0 3px; cursor: pointer; vertical-align: middle; }
+  select.gap.example { border-color: #1D9E75; background: #E1F5EE; color: #085041; cursor: default; font-weight: bold; }
+  select.gap.correct { border-color: #1D9E75; background: #E1F5EE; color: #085041; }
+  select.gap.wrong   { border-color: #D85A30; background: #FAECE7; color: #4A1B0C; }
+  select.gap:disabled { opacity: 1; }
+  .ex { font-size: 11px; color: #085041; background: #E1F5EE; border: 1px solid #1D9E75; border-radius: 4px; padding: 1px 5px; vertical-align: middle; margin-right: 2px; font-weight: bold; }
+  .field { margin-bottom: 12px; }
+  .field label { font-size: 14px; color: #555; margin-right: 8px; display: inline-block; width: 160px; }
+  .field input { font-size: 15px; border: 1.5px solid #aaa; border-radius: 6px; padding: 4px 10px; width: 260px; }
+  h2 { font-size: 16px; color: #1F5C7A; margin: 0 0 16px; }
+  .btn { margin-top: 14px; padding: 7px 22px; font-size: 14px; border: 1px solid #aaa; border-radius: 8px; background: #fff; cursor: pointer; }
+  .btn:hover { background: #f0f0f0; }
+  .score { margin-top: 8px; font-size: 14px; font-weight: bold; }
+  .hint  { font-size: 13px; color: #666; margin-top: 3px; }
+  .send  { font-size: 13px; color: #1D9E75; margin-top: 6px; }
+</style>
+</head>
+<body>
+<h2>Zadanie 3.7 — aspekt i tryby</h2>
+<div class="field"><label for="sName">Imię i nazwisko:</label><input type="text" id="sName" placeholder="wpisz imię i nazwisko"></div>
+<div class="field"><label for="sEmail">E-mail (opcjonalnie):</label><input type="email" id="sEmail" placeholder="wpisz e-mail"></div>
+<p>
+  Tomek i Mateusz są braćmi. Tomek często wspomina ich wspólną decyzję sprzed lat: „I ty, i ja
+  <span class="ex">przykład</span><select class="gap example" disabled><option>pamiętajmy</option></select>,
+  że
+  <span class="ex">przykład</span><select class="gap example" disabled><option>gdybyśmy</option></select>
+  10 lat temu
+  <span class="ex">przykład</span><select class="gap example" disabled><option>posłuchali</option></select>
+  rady dziadka, dziś
+  <select class="gap" data-correct="bylibyśmy" data-label="1">
+    <option value="">— wybierz —</option><option>byliśmy</option><option>bylibyśmy</option><option>byli</option>
+  </select>
+  pilotami". Mateusz odpowiedział: „Gdybym tylko wtedy
+  <select class="gap" data-correct="wiedział" data-label="2">
+    <option value="">— wybierz —</option><option>wiedział</option><option>wiedziałem</option><option>wiedzieli</option>
+  </select>,
+  co planuje dziadek…".
+</p>
+<p>
+  Chłopcy dopiero zaczynali liceum i bardzo interesowali się lotnictwem. Gdyby
+  <select class="gap" data-correct="mogli" data-label="3">
+    <option value="">— wybierz —</option><option>mogli</option><option>mogły</option><option>mogliby</option>
+  </select>,
+  spędzaliby całe dnie na lotnisku,
+  <select class="gap" data-correct="poznawaliby" data-label="4">
+    <option value="">— wybierz —</option><option>poznawałyby</option><option>poznaj</option><option>poznawaliby</option>
+  </select>
+  samoloty i pilotów. Pewnego dnia dziadek powiedział do nich obu: „
+  <select class="gap" data-correct="Skończcie" data-label="5">
+    <option value="">— wybierz —</option><option>Kończyliby</option><option>Skończcie</option><option>Skończ</option>
+  </select>
+  jak najlepiej liceum i
+  <select class="gap" data-correct="jedźcie" data-label="6">
+    <option value="">— wybierz —</option><option>pojedź</option><option>jedźcie</option><option>pojechaliby</option>
+  </select>
+  na studia do Kanady. Ja wam dam pieniądze". Chłopcy roześmiali się i powiedzieli: „Dziadku, nie
+  <select class="gap" data-correct="żartuj" data-label="7">
+    <option value="">— wybierz —</option><option>żartuj</option><option>zażartowałbyś</option><option>zażartujcie</option>
+  </select>!
+  Skąd
+  <select class="gap" data-correct="wziąłbyś" data-label="8">
+    <option value="">— wybierz —</option><option>weź</option><option>brałby</option><option>wziąłbyś</option>
+  </select>
+  tyle pieniędzy?" Gdyby wtedy
+  <select class="gap" data-correct="potraktowali" data-label="9">
+    <option value="">— wybierz —</option><option>traktowaliśmy</option><option>potraktowali</option><option>potraktowaliby</option>
+  </select>
+  słowa dziadka poważnie, to dziś ich kariery zawodowe
+  <select class="gap" data-correct="wyglądałyby" data-label="10">
+    <option value="">— wybierz —</option><option>wyglądajmy</option><option>wyglądałby</option><option>wyglądałyby</option>
+  </select>
+  inaczej. Dużo później okazało się, że dziadek całe życie oszczędzał, żeby zrealizować ich marzenia.
+</p>
+<button class="btn" onclick="check()">Sprawdź i wyślij wyniki</button>
+<div class="score" id="score"></div>
+<div class="hint" id="hint"></div>
+<div class="send" id="send"></div>
+<script>
+var GAS="https://script.google.com/macros/s/AKfycbxCL1FMmtCsnUTI0bEzbIt-1VTV8cEbnIg64qrvWz-yAWG5DqFUQD_pACFlhsRL0_7B7Q/exec";
+function check(){
+  var name=document.getElementById('sName').value.trim();
+  var email=document.getElementById('sEmail').value.trim();
+  if(!name){alert('Proszę wpisać imię i nazwisko.');return;}
+  var sel=document.querySelectorAll('select.gap:not(.example)');
+  var ok=0,empty=0,details=[];
+  sel.forEach(function(s){
+    var v=s.value||'(brak)';
+    if(!s.value)empty++;
+    s.disabled=true;s.classList.remove('correct','wrong');
+    if(s.value===s.dataset.correct){s.classList.add('correct');ok++;details.push('Luka '+s.dataset.label+': '+v+' OK');}
+    else{s.classList.add('wrong');details.push('Luka '+s.dataset.label+': '+v+' (poprawnie: '+s.dataset.correct+')');}
+  });
+  var total=sel.length;
+  document.getElementById('score').textContent='Wynik: '+ok+' / '+total;
+  document.getElementById('hint').textContent=empty>0?'Nie wypełniono '+empty+' luk.':ok===total?'Brawo! Wszystkie odpowiedzi poprawne.':'Błędne luki zaznaczone na czerwono.';
+  document.getElementById('send').textContent='Wysyłanie...';
+  fetch(GAS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name:name,email:email,title:'Egzamin B1 2019 — Zadanie 3.7',message:'Wynik: '+ok+'/'+total+'\n\n'+details.join('\n')})
+  }).then(function(){document.getElementById('send').textContent='Wysłano! ✓'+(email?' Sprawdź skrzynkę.':'');})
+  .catch(function(){document.getElementById('send').textContent='Błąd wysyłania.';});
+}
+</script>
+</body>
+</html>
