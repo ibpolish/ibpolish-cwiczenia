@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B2 2017 — Zadanie III (formy nieosobowe i strona bierna)</title>
+<style>
+  body{font-family:Arial,sans-serif;font-size:16px;line-height:2.2;color:#222;padding:20px;max-width:900px;margin:0 auto;background:#fff}
+  h2{font-size:16px;color:#1F5C7A;margin:0 0 6px}
+  .instr{font-size:14px;color:#444;margin-bottom:16px}
+  .field{margin-bottom:10px}
+  .field label{font-size:14px;color:#555;display:inline-block;width:170px}
+  .field input{font-size:15px;border:1.5px solid #aaa;border-radius:6px;padding:4px 10px;width:260px}
+  select.gap{font-size:15px;font-family:Arial,sans-serif;color:#222;background:#f5f5f5;border:1.5px solid #aaa;border-radius:6px;padding:2px 6px;margin:0 3px;cursor:pointer;vertical-align:middle}
+  select.gap.example{border-color:#1D9E75;background:#E1F5EE;color:#085041;font-weight:bold;cursor:default}
+  select.gap.correct{border-color:#1D9E75;background:#E1F5EE;color:#085041}
+  select.gap.wrong{border-color:#D85A30;background:#FAECE7;color:#4A1B0C}
+  select.gap:disabled{opacity:1}
+  .ex-label{font-size:11px;color:#085041;background:#E1F5EE;border:1px solid #1D9E75;border-radius:4px;padding:1px 5px;vertical-align:middle;margin-right:2px;font-weight:bold}
+  .btn{margin-top:14px;padding:7px 22px;font-size:14px;border:1px solid #aaa;border-radius:8px;background:#fff;cursor:pointer}
+  .btn:hover{background:#f0f0f0}
+  .score{margin-top:8px;font-size:14px;font-weight:bold}
+  .hint{font-size:13px;color:#666;margin-top:3px}
+  .send{font-size:13px;color:#1D9E75;margin-top:6px}
+  .text-block{text-align:justify;margin:12px 0}
+  sup{font-size:11px;color:#888}
+</style>
+</head>
+<body>
+<h2>Zadanie III — Proszę podkreślić poprawną formę wyrazów (formy nieosobowe i strona bierna)</h2>
+<p class="instr">Pierwsze rozwiązanie jest przykładem. / 5 p. (10 × 0,5 p.)</p>
+<div class="field"><label>Imię i nazwisko:</label><input type="text" id="sName" placeholder="wpisz imię i nazwisko"></div>
+<div class="field"><label>E-mail (opcjonalnie):</label><input type="email" id="sEmail" placeholder="wpisz e-mail"></div>
+
+<div class="text-block">
+  W ramach przygotowań do przyjęcia kibiców na Euro we Wrocławiu
+  <span class="ex-label">przykład</span><select class="gap example" disabled><option>zrealizowano</option></select>
+  już wiele kosztownych inwestycji.
+</div>
+
+<div class="text-block">
+  Kilka tygodni temu
+  <select class="gap" data-correct="została zakończona" data-label="1">
+    <option value="">— wybierz —</option>
+    <option>została zakończona</option><option>zakończono</option><option>zakończyło się</option>
+  </select><sup>1</sup>
+  budowa Autostradowej Obwodnicy Wrocławia, a już niedługo
+  <select class="gap" data-correct="zostanie otwarty" data-label="2">
+    <option value="">— wybierz —</option>
+    <option>otwarto</option><option>zostanie otwarty</option><option>otwierano</option>
+  </select><sup>2</sup>
+  nowy stadion miejski. Choć już wiele razy
+  <select class="gap" data-correct="odkładano" data-label="3">
+    <option value="">— wybierz —</option>
+    <option>będzie odkładany</option><option>odłoży się</option><option>odkładano</option>
+  </select><sup>3</sup>
+  w czasie termin oddania do użytku szybkiej linii tramwajowej na trasie stadion-centrum, obecnie
+  <select class="gap" data-correct="mówi się" data-label="4">
+    <option value="">— wybierz —</option>
+    <option>mówiono</option><option>jest mówione</option><option>mówi się</option>
+  </select><sup>4</sup>,
+  że jednak miasto zdąży do marca następnego roku.
+</div>
+
+<div class="text-block">
+  Od niemal dwóch lat
+  <select class="gap" data-correct="jest przebudowywany" data-label="5">
+    <option value="">— wybierz —</option>
+    <option>przebudowano</option><option>jest przebudowywany</option><option>przebuduje się</option>
+  </select><sup>5</sup>
+  wrocławski dworzec główny, który prawdopodobnie
+  <select class="gap" data-correct="zostanie oddany" data-label="6">
+    <option value="">— wybierz —</option>
+    <option>zostanie oddany</option><option>należy oddać</option><option>oddaje się</option>
+  </select><sup>6</sup>
+  do użytku wiosną przyszłego roku.
+</div>
+
+<div class="text-block">
+  Wielu mieszkańców narzeka, że remonty
+  <select class="gap" data-correct="rozpoczęto" data-label="7">
+    <option value="">— wybierz —</option>
+    <option>rozpoczęto</option><option>rozpocznie się</option><option>trzeba rozpoczynać</option>
+  </select><sup>7</sup>
+  już tyle miesięcy temu, a prace wciąż nie
+  <select class="gap" data-correct="zostały ukończone" data-label="8">
+    <option value="">— wybierz —</option>
+    <option>kończy się</option><option>zostaną ukończone</option><option>zostały ukończone</option>
+  </select><sup>8</sup>.
+  Inni z kolei mają miastu za złe, że na organizację jednorazowej imprezy
+  <select class="gap" data-correct="zostało wydanych" data-label="9">
+    <option value="">— wybierz —</option>
+    <option>zostały wydane</option><option>zostało wydanych</option><option>były wydane</option>
+  </select><sup>9</sup>
+  tyle pieniędzy. Władze miasta zapewniają jednak, że również w przyszłości wszystkie obiekty
+  <select class="gap" data-correct="będą wykorzystywane" data-label="10">
+    <option value="">— wybierz —</option>
+    <option>będą wykorzystywane</option><option>wykorzystywano</option><option>wykorzystuje się</option>
+  </select><sup>10</sup>
+  do innych celów.
+</div>
+
+<button class="btn" onclick="check()">Sprawdź i wyślij wyniki</button>
+<div class="score" id="score"></div>
+<div class="hint" id="hint"></div>
+<div class="send" id="send"></div>
+<script>
+var GAS="https://script.google.com/macros/s/AKfycbxCL1FMmtCsnUTI0bEzbIt-1VTV8cEbnIg64qrvWz-yAWG5DqFUQD_pACFlhsRL0_7B7Q/exec";
+function check(){
+  var name=document.getElementById('sName').value.trim();
+  var email=document.getElementById('sEmail').value.trim();
+  if(!name){alert('Proszę wpisać imię i nazwisko.');return;}
+  var sel=document.querySelectorAll('select.gap:not(.example)');
+  var ok=0,empty=0,details=[];
+  sel.forEach(function(s){
+    var v=s.value||'(brak)';
+    if(!s.value)empty++;
+    s.disabled=true;s.classList.remove('correct','wrong');
+    if(s.value===s.dataset.correct){s.classList.add('correct');ok++;details.push('Luka '+s.dataset.label+': '+v+' ✓');}
+    else{s.classList.add('wrong');details.push('Luka '+s.dataset.label+': '+v+' → poprawnie: '+s.dataset.correct);}
+  });
+  var total=sel.length;
+  document.getElementById('score').textContent='Wynik: '+ok+' / '+total+' ('+Math.round(ok/total*100)+'%)';
+  document.getElementById('hint').textContent=empty>0?'Nie wypełniono '+empty+' luk.':ok===total?'Brawo! Wszystkie odpowiedzi poprawne.':'Błędne luki zaznaczone na czerwono.';
+  document.getElementById('send').textContent='Wysyłanie...';
+  fetch(GAS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name:name,email:email,title:'B2 Egzamin przykładowy — Zadanie III (formy nieosobowe)',message:'Wynik: '+ok+'/'+total+'\n\n'+details.join('\n')})
+  }).then(function(){document.getElementById('send').textContent='Wysłano! ✓'+(email?' Sprawdź skrzynkę.':'');})
+  .catch(function(){document.getElementById('send').textContent='Błąd wysyłania.';});
+}
+</script>
+</body>
+</html>
